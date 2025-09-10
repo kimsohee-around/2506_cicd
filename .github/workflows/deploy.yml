@@ -54,11 +54,11 @@ jobs:
             # Run Spring Boot container with DB env variables
             docker run -d --name spring_9jwt-final  \
             -p 8080:8080 \
-            -e DB_DRIVER="${{ secrets.DB_DRIVER }}" \
-            -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
-            -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \ 
-            -e DB_URL="${{ secrets.DB_URL }}" \
             "${{ secrets.DOCKER_HUB_USERNAME }}/spring_9jwt-final"
+            # -e DB_DRIVER="${{ secrets.DB_DRIVER }}" \
+            # -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
+            # -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \ 
+            # -e DB_URL="${{ secrets.DB_URL }}" \
             # --network cloud-cicid-net \
 
             # Run Frontend container
