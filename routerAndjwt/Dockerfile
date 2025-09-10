@@ -13,6 +13,7 @@ COPY package*.json ./
 RUN npm install
 
 # 프로젝트 소스 복사
+COPY .env .env
 COPY . .
 
 # Vite build
