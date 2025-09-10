@@ -1,0 +1,6 @@
+# ---- Run Stage ----
+FROM nginx:alpine
+# 빌드 결과물을 이미지 nginx 웹서버 폴더로 복사
+COPY dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
