@@ -13,8 +13,8 @@ COPY package*.json ./
 RUN npm install
 
 # 프로젝트 소스 복사
-COPY ./.env /app/.env
 COPY . .
+COPY .env.production .env.production
 
 # Vite build
 RUN npm run build
