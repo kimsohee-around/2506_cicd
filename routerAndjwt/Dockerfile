@@ -21,7 +21,7 @@ ENV VITE_REQ_API_HOST=$VITE_REQ_API_HOST
 RUN echo "VITE_REQ_API_HOST=$VITE_REQ_API_HOST" > .env
 
 # nginx 설정 복사
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 # 프로젝트 소스 복사
 COPY . .
 
