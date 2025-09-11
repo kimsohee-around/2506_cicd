@@ -40,9 +40,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Ensure docker network exists
-            # docker network create app-net || true
-
             # Pull latest images
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/spring_9jwt-final
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/react-auth-final
@@ -53,19 +50,20 @@ jobs:
             docker stop react-auth-final || true
             docker rm react-auth-final || true
 
-            # Run Spring Boot container with DB env variables
+            # Run Spring Boot container 
             docker run -d --name spring_9jwt-final  \
             -p 8080:8080 \
             --env-file ~/app-config/.env \
             "${{ secrets.DOCKER_HUB_USERNAME }}/spring_9jwt-final"
+
+            # with DB env variables ⤴ env file 을 미리 ec2 에 복사했음
             # -e DB_DRIVER="${{ secrets.DB_DRIVER }}" \
             # -e DB_USERNAME="${{ secrets.DB_USERNAME }}" \
             # -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \ 
             # -e DB_URL="${{ secrets.DB_URL }}" \
-            # --network cloud-cicid-net \
 
             # Run Frontend container
             docker run -d --name react-auth-final \
             -p 80:80 \
             "${{ secrets.DOCKER_HUB_USERNAME }}"/react-auth-final
-            #--network cloud-cicid-net 
+

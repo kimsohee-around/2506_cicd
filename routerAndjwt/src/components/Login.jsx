@@ -37,6 +37,11 @@ const Login = () => {
     }
   };
 
+  const handleHome = () => {
+    const navigate = useNavigate()
+    navigate("/")
+  }
+
   return (
     <form onSubmit={handleLogin}>
       <h2>로그인</h2>
@@ -60,6 +65,7 @@ const Login = () => {
         </p>
       )}
       <button type="submit">로그인</button>
+      <button type="button" onClick={handleHome}>홈</button>
     </form>
   );
 };
