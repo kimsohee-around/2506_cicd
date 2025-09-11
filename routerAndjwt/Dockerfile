@@ -6,15 +6,22 @@ FROM node:20-alpine AS build
 # 작업 디렉토리 생성
 WORKDIR /app
 
+
 # package.json, lock 파일만 먼저 복사 → 캐시 활용
 COPY package*.json ./
 
 # 의존성 설치
 RUN npm install
 
+# 환경 변수 선언
+ARG VITE_REQ_API_HOST
+ENV VITE_REQ_API_HOST=$VITE_REQ_API_HOST
+
+# 컨테이너 작업디렉토리에 .env 생성
+RUN echo "VITE_REQ_API_HOST=$VITE_REQ_API_HOST" > .env
+
 # 프로젝트 소스 복사
 COPY . .
-COPY .env.production .env.production
 
 # Vite build
 RUN npm run build

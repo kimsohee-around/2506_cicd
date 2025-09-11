@@ -24,7 +24,9 @@ jobs:
 
       - name: Build & Push Frontend Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/react-auth-final ./routerAndjwt
+          docker build \
+          --build-arg VITE_REQ_API_HOST=http://172.31.36.10:8080 \
+          -t ${{ secrets.DOCKER_HUB_USERNAME }}/react-auth-final ./routerAndjwt
           echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/react-auth-final
 
